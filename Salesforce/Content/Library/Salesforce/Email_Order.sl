@@ -3,9 +3,9 @@ flow:
   name: Email_Order
   inputs:
     - user: daniel@rpamf.onmicrosoft.com
-    - sf_username: petr.panuska-cszm@force.com
+    - sf_username: rpa-demo@microfocus.com
     - sf_password:
-        default: Cloud_123456
+        default: Cloud_123
         sensitive: true
   workflow:
     - Get_Authorization_Token:
@@ -86,14 +86,21 @@ flow:
         publish:
           - text_string
         navigate:
-          - SUCCESS: create_multiple_orders
+          - SUCCESS: Order_flow
           - FAILURE: on_failure
-    - create_multiple_orders:
-        do:
-          Salesforce.sub_flows.create_multiple_orders:
-            - lines: '${text_string}'
-            - username: '${sf_username}'
-            - password: '${sf_password}'
+    - Order_flow:
+        parallel_loop:
+          for: 'line in text_string.splitlines()[1:]'
+          do:
+            Salesforce.Order_flow:
+              - username: '${sf_username}'
+              - password:
+                  value: '${sf_password}'
+                  sensitive: true
+              - account_name: '${line.split()[1]}'
+              - order_date: '${line.split()[4]}'
+              - contract_number: '${line.split()[2]}'
+              - description: '${"order id "+line.split()[0]+" with amount "+line.split()[3]}'
         navigate:
           - SUCCESS: SUCCESS
           - FAILURE: on_failure
@@ -124,11 +131,11 @@ extensions:
       extract_text_from_pdf:
         x: 532
         'y': 133
-      create_multiple_orders:
-        x: 533
-        'y': 324
+      Order_flow:
+        x: 535
+        'y': 326
         navigate:
-          8e89e2c0-92bb-4c07-f9ce-5400bbabf91d:
+          2439816b-988f-fb07-2e9e-84b4b2467017:
             targetId: ed019201-a1a4-679c-9598-b18409ddd093
             port: SUCCESS
     results:
