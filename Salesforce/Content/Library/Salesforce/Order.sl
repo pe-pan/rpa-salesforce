@@ -10,7 +10,7 @@ operation:
     - contract_number
     - description
   sequential_action:
-    gav: 'com.microfocus.seq:Salesforce.Order:1.0.0'
+    gav: 'com.microfocus.seq:Salesforce.Order:1.0.1'
     steps:
       - step:
           id: '1'
