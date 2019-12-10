@@ -81,7 +81,7 @@ flow:
         do:
           io.cloudslang.tesseract.ocr.extract_text_from_pdf:
             - file_path: "${'c:\\\\temp\\\\'+file_name}"
-            - data_path: "C:\\Temp\\tessdata\\tessdata"
+            - data_path: "C:\\Enablement\\tessdata"
             - language: ENG
         publish:
           - text_string
