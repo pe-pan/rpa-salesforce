@@ -1,20 +1,28 @@
+########################################################################################################################
+#!!
+#! @input client_id: Azure Client ID
+#! @input client_secret: Azure Client Secret Key
+#!!#
+########################################################################################################################
 namespace: Salesforce
 flow:
   name: Email_Order
   inputs:
     - user: daniel@rpamf.onmicrosoft.com
+    - client_id: 4c800826-f5c8-44a1-b779-2f333099823d
+    - client_secret:
+        sensitive: true
     - sf_username: rpa-demo@microfocus.com
     - sf_password:
-        default: Cloud@123
         sensitive: true
   workflow:
     - Get_Authorization_Token:
         do_external:
           18ff19e5-8484-4803-857e-4a2293b91eef:
             - loginAuthority: 'https://login.windows.net/rpamf.onmicrosoft.com/oauth2/token'
-            - clientId: 4c800826-f5c8-44a1-b779-2f333099823d
+            - clientId: '${client_id}'
             - clientSecret:
-                value: 'JHAH]Yqe3*97FA0kb+]lO0X5][5iNw_]'
+                value: '${client_secret}'
                 sensitive: true
         publish:
           - authToken
@@ -143,3 +151,4 @@ extensions:
         ed019201-a1a4-679c-9598-b18409ddd093:
           x: 701
           'y': 133
+
