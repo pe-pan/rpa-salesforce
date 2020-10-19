@@ -106,13 +106,13 @@ flow:
         publish:
           - text_string
         navigate:
-          - SUCCESS: Order_flow
+          - SUCCESS: order
           - FAILURE: on_failure
-    - Order_flow:
+    - order:
         parallel_loop:
           for: 'line in text_string.splitlines()[1:]'
           do:
-            Salesforce.Order_flow:
+            Salesforce.order:
               - username: '${sf_username}'
               - password:
                   value: '${sf_password}'
@@ -151,7 +151,7 @@ extensions:
       extract_text_from_pdf:
         x: 532
         'y': 133
-      Order_flow:
+      order:
         x: 535
         'y': 326
         navigate:
