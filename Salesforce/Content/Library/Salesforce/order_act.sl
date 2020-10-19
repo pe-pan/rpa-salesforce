@@ -1,11 +1,11 @@
 namespace: Salesforce
 operation:
-  name: Order
+  name: order_act
   inputs:
   - username: rpa-demo@microfocus.com
   - password:
       sensitive: true
-      default: ********
+      default: 
   - account_name: Google
   - order_date: 7/7/2019
   - contract_number: '00000104'
@@ -43,7 +43,7 @@ operation:
         id: '6'
         object_path: Browser("Login | Salesforce").Page("Login | Salesforce").WebEdit("pw")
         action: SetSecure
-        default_args: ********
+        default_args: 
         snapshot: .\Snapshots\ssf2.html
         highlight_id: '10000000'
     - step:
