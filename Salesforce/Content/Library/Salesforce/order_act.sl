@@ -5,7 +5,7 @@ operation:
   - username: rpa-demo@microfocus.com
   - password:
       sensitive: true
-      default: 
+      default: Cloud@12345
   - account_name: Google
   - order_date: 7/7/2019
   - contract_number: '00000104'
@@ -43,7 +43,7 @@ operation:
         id: '6'
         object_path: Browser("Login | Salesforce").Page("Login | Salesforce").WebEdit("pw")
         action: SetSecure
-        default_args: 
+        default_args: Cloud@12345
         snapshot: .\Snapshots\ssf2.html
         highlight_id: '10000000'
     - step:
