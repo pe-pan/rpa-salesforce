@@ -10,7 +10,7 @@ flow:
     - contract_number: '00000104'
     - description: desc
   workflow:
-    - Order:
+    - order_act:
         do:
           Salesforce.order_act:
             - username: '${username}'
