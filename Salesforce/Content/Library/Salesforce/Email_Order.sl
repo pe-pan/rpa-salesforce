@@ -24,6 +24,9 @@ flow:
             - clientSecret:
                 value: '${client_secret}'
                 sensitive: true
+            - proxyHost: "${get_sp('io.cloudslang.salesforce.demo.proxy_host')}"
+            - proxyPort: "${get_sp('io.cloudslang.salesforce.demo.proxy_port')}"
+            - proxyUsername: "${get_sp('io.cloudslang.salesforce.demo.proxy_username')}"
         publish:
           - authToken
         navigate:
@@ -36,6 +39,9 @@ flow:
             - userPrincipalName: '${user}'
             - folderId: Inbox
             - topQuery: '1'
+            - proxyHost: "${get_sp('io.cloudslang.salesforce.demo.proxy_host')}"
+            - proxyPort: "${get_sp('io.cloudslang.salesforce.demo.proxy_port')}"
+            - proxyUsername: "${get_sp('io.cloudslang.salesforce.demo.proxy_username')}"
         publish:
           - message_json: '${document}'
         navigate:
@@ -57,6 +63,9 @@ flow:
             - authToken: '${authToken}'
             - userPrincipalName: '${user}'
             - messageId: '${messageId}'
+            - proxyHost: "${get_sp('io.cloudslang.salesforce.demo.proxy_host')}"
+            - proxyPort: "${get_sp('io.cloudslang.salesforce.demo.proxy_port')}"
+            - proxyUsername: "${get_sp('io.cloudslang.salesforce.demo.proxy_username')}"
         publish:
           - attachmentId
         navigate:
@@ -70,6 +79,9 @@ flow:
             - messageId: '${messageId}'
             - attachmentId: '${attachmentId}'
             - filePath: "C:\\temp"
+            - proxyHost: "${get_sp('io.cloudslang.salesforce.demo.proxy_host')}"
+            - proxyPort: "${get_sp('io.cloudslang.salesforce.demo.proxy_port')}"
+            - proxyUsername: "${get_sp('io.cloudslang.salesforce.demo.proxy_username')}"
         publish:
           - attachment_json: '${document}'
         navigate:
@@ -119,7 +131,7 @@ extensions:
   graph:
     steps:
       Get_Authorization_Token:
-        x: 66
+        x: 64
         'y': 124
       List_Messages:
         x: 54

@@ -2,13 +2,13 @@ namespace: Salesforce
 flow:
   name: Order_flow
   inputs:
-    - username
+    - username: rpa-demo@microfocus.com
     - password:
         sensitive: true
-    - account_name
-    - order_date
-    - contract_number
-    - description
+    - account_name: Google
+    - order_date: 7/7/2019
+    - contract_number: '00000104'
+    - description: desc
   workflow:
     - Order:
         do:
@@ -54,3 +54,4 @@ extensions:
         bb1a8b48-5268-533d-ce59-0c9f04a8857f:
           x: 400
           'y': 150
+
